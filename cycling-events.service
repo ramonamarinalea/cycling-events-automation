@@ -1,0 +1,19 @@
+[Unit]
+Description=Cycling Events Automation Service
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/opt/cycling-events-automation
+Environment=PATH=/usr/bin:/usr/local/bin
+ExecStart=/usr/bin/python3 /opt/cycling-events-automation/scheduler.py
+Restart=always
+RestartSec=10
+
+# Logging
+StandardOutput=append:/var/log/cycling-events/output.log
+StandardError=append:/var/log/cycling-events/error.log
+
+[Install]
+WantedBy=multi-user.target
